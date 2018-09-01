@@ -1,16 +1,20 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-class Main extends React.Component {
-  render() {
+import createStore from './store/createStore'
+import AppContainer from './AppContainer'
+
+export default class Root extends React.Component {
+  renderApp() {
+    const initialState = window.__INITIAL_STATE__
+    const store = createStore(initialState)
+
     return (
-      <View>
-        <Text>
-          Hey MyCargo
-        </Text>
-      </View>
+      <AppContainer store={store} />
     )
   }
-}
 
-export default Main
+  render() {
+    return this.renderApp()
+  }
+}
